@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="./Images/favicon.png" type="png">
+    <title>Simple Calculator</title>
+</head>
+<body id="root">
+    <span id="theme_icon"><button id="theme_switch" onclick="toggleMode()"></button></span>
+    <div id="card_flipper">
+        <div id="calculator_card" >
+            <button class="all_buttons operation_btns" id="history" onclick="historySwitch()"><img src="./Images/history.png" alt="History" class="btn_icons"></button>
+            <input inputmode="none" id="calculator_input" />
+            <span id="calculator_output"></span>
+            <button class="all_buttons operation_btns" id="allclear" onclick="clearAllInput()">AC</button>
+            <button class="all_buttons operation_btns" id="backspace" onclick="clearInput()"><img src="./Images/backspace.png" alt="Backspace" class="btn_icons"></button>
+            <button class="all_buttons operation_btns" id="paranthesis_open" onclick="addInput('(')">(</button>
+            <button class="all_buttons operation_btns" id="paranthesis_close" onclick="addInput(')')">)</button>
+            <button class="all_buttons operation_btns" id="percent" onclick="addInput('%')">&percnt;</button>
+            <button class="all_buttons operation_btns" id="square" onclick="addInput('^2')">a²</button>
+            <button class="all_buttons operation_btns" id="power" onclick="addInput('^')">^</button>
+            <button class="all_buttons operation_btns" id="divide" onclick="addInput('/')">&divide;</button>
+            <button class="all_buttons number_btns" id="num7" onclick="addInput('7')">7</button>
+            <button class="all_buttons number_btns" id="num8" onclick="addInput('8')">8</button>
+            <button class="all_buttons number_btns" id="num9" onclick="addInput('9')">9</button>
+            <button class="all_buttons operation_btns" id="multiply" onclick="addInput('*')">*</button>
+            <button class="all_buttons number_btns" id="num4" onclick="addInput('4')">4</button>
+            <button class="all_buttons number_btns" id="num5" onclick="addInput('5')">5</button>
+            <button class="all_buttons number_btns" id="num6" onclick="addInput('6')">6</button>
+            <button class="all_buttons operation_btns" id="minus" onclick="addInput('-')">&minus;</button>
+            <button class="all_buttons number_btns" id="num1" onclick="addInput('1')">1</button>
+            <button class="all_buttons number_btns" id="num2" onclick="addInput('2')">2</button>
+            <button class="all_buttons number_btns" id="num3" onclick="addInput('3')">3</button>
+            <button class="all_buttons operation_btns" id="plus" onclick="addInput('+')">&plus;</button>
+            <button class="all_buttons number_btns" id="dot" onclick="addInput('.')">&dot;</button>
+            <button class="all_buttons number_btns" id="num0" onclick="addInput('0')">0</button>
+            <button class="all_buttons number_btns" id="pi" onclick="addInput('3.14')">&pi;</button>
+            <button class="all_buttons operation_btns" id="equals" onclick="computeResult()">&equals;</button>
+        </div>
+        <div id="history_card" >
+            <div id="history_btn_container">
+                <button class="all_buttons" onclick="flipCard('0deg')"><img src="./Images/calculator.png" alt="Calculator" class="btn_icons"></button>
+                <button class="all_buttons" onclick="clearHistory()"><img src="./Images/clear-history.png" alt="Clear History" class="btn_icons"></button>
+            </div>
+            <span id="empty_space"></span>
+            <div id="all_history"></div>
+        </div>
+    </div>
+    
+    <script src="actions.js"></script>
+</body>
+</html>

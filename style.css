@@ -1,0 +1,434 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins');
+:root{
+
+    /* Font color */
+
+    --color-theme-font: rgb(51, 170, 255);
+    --color-font: rgba(0,0,0);
+    --color-history-font: rgba(255, 255, 255, 0.9);
+    --color-button: rgba(255, 255, 255, 0.50);
+
+    /* Font size */
+
+    --size-xxs: 0.5rem;
+    --size-xs: 0.75rem;
+    --size-sm: 0.875rem;
+    --size-base: 1rem;
+    --size-lg: 1.125rem;
+    --size-xl: 1.25rem;
+    --size-xxl: 1.5rem;
+    --size-3xl: 1.875rem;
+    --size-4xl: 2.25rem;
+    --size-5xl: 3rem;
+    --size-6xl: 3.75rem;
+    --size-7xl: 4.5rem;
+    --size-8xl: 6.5rem;
+
+    /* Background color */
+
+    --color-background-calculator: rgba(255, 255, 255, 0.25);
+    --color-background-history: rgba(255, 255, 255, 0.075);
+
+
+    /* Effects color */
+
+    --color-card-boxshadow-1: rgba(27, 27, 27, 0.5);
+    --color-card-boxshadow-2: rgba(255, 255, 255, 0.2);
+    --color-button-boxshadow-1: rgba(0, 0, 0, 0.1);
+    --color-button-boxshadow-2: rgba(255, 255, 255, 0.4);
+
+}
+*, *::after, *::before{
+    font-family: Poppins;
+    box-sizing: border-box;
+}
+#root{
+    margin: 0;
+    position: relative;
+    height: 100svh;
+    width: 100svw;
+    max-width: 100%;
+    max-height: 100%;
+    background-image: url('./Components/background-light.svg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+#theme_icon{
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 1.25rem;
+    height: 1.25rem;
+    padding: 0.25rem;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 150ms ease-in-out;
+    opacity: 62.5%;
+}
+#theme_icon:hover{
+    opacity: 75%;
+}
+#theme_icon:active{
+    opacity: 100%;
+}
+#theme_icon > button{
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 100%;
+    background-image: url('./Images/dark-theme-icon.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: none;
+}
+#card_flipper{
+    margin: auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    background-color: transparent;
+    transition: transform 0.6s ease;
+    transform-style: preserve-3d;
+}
+#calculator_card{
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    display: grid;
+    grid-template-areas:    "History Input Input Input"
+                            "Output Output Output Output"
+                            "AllClear BackSpace OpenBracket CloseBracket"
+                            "Percent Square Power Divide"
+                            "Num7 Num8 Num9 Multiply"
+                            "Num4 Num5 Num6 Minus"
+                            "Num1 Num2 Num3 Plus"
+                            "Dot Num0 PI Equals";
+    gap: 10px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow:  1px 1px 10px var(--color-card-boxshadow-1),
+             -3px -3px 10px var(--color-card-boxshadow-2);
+    background-color: var(--color-background-calculator);
+    backdrop-filter: blur(3px) saturate(105%);
+}
+#history_card{
+    position: absolute;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    display: grid;
+    gap: 10px;
+    grid-template-areas:    "Buttons Buttons Emptyspace Emptyspace"
+                            "AllHistory AllHistory AllHistory AllHistory"
+                            "AllHistory AllHistory AllHistory AllHistory"
+                            "AllHistory AllHistory AllHistory AllHistory"
+                            "AllHistory AllHistory AllHistory AllHistory"
+                            "AllHistory AllHistory AllHistory AllHistory"
+                            "AllHistory AllHistory AllHistory AllHistory"
+                            "AllHistory AllHistory AllHistory AllHistory";
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    width: calc(100% - 40px);
+    height: calc(100% - 40px);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow:  1px 1px 10px var(--color-card-boxshadow-1),
+             -1px -1px 10px var(--color-card-boxshadow-2);
+    background-color: var(--color-background-history);
+    backdrop-filter: blur(5px) saturate(105%);
+}
+
+/* Calculator */
+#calculator_input{
+    outline: none;
+    border: none;
+    background-color: transparent;
+    grid-area: Input;
+    text-align: right;
+    font-weight: 500;
+    font-size: var(--size-3xl);
+    color: var(--color-history-font);
+}
+.all_buttons{
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: var(--size-sm);
+    border: none;
+    background-color: var(--color-button);;
+    backdrop-filter: blur(10px) saturate(105%);
+    box-shadow:  1px 1px 6px var(--color-button-boxshadow-1),
+             -1px -1px 6px var(--color-button-boxshadow-2);
+    user-select: none;
+    color: var(--color-font);
+}
+.operation_btns{
+    color: var(--color-theme-font);
+}
+.all_buttons:hover, .all_buttons:active{
+    opacity: 0.7;
+}
+#calculator_output{
+    grid-area: Output;
+    text-align: right;
+    font-size: var(--size-base);
+    color: var(--color-history-font);
+}
+#history{
+    grid-area: History;
+}
+.btn_icons{
+    margin: auto;
+    max-width: 40%;
+    display: block;
+    aspect-ratio: 1;
+}
+#allclear{
+    grid-area: AllClear;
+}
+#backspace{
+    grid-area: BackSpace;
+}
+#paranthesis_open{
+    grid-area: OpenBracket;
+}
+#paranthesis_close{
+    grid-area: CloseBracket;
+}
+#pi{
+    grid-area: PI;
+}
+#percent{
+    grid-area: Percent;
+}
+#square{
+    grid-area: Square;
+}
+#power{
+    grid-area: Power;
+}
+#divide{
+    grid-area: Divide;
+}
+#multiply{
+    grid-area: Multiply;
+}
+#minus{
+    grid-area: Minus;
+}
+#plus{
+    grid-area: Plus;
+}
+#equals{
+    grid-area: Equals;
+}
+#dot{
+    grid-area: Dot;
+}
+#num0{
+    grid-area: Num0;
+}
+#num1{
+    grid-area: Num1;
+}
+#num2{
+    grid-area: Num2;
+}
+#num3{
+    grid-area: Num3;
+}
+#num4{
+    grid-area: Num4;
+}
+#num5{
+    grid-area: Num5;
+}
+#num6{
+    grid-area: Num6;
+}
+#num7{
+    grid-area: Num7;
+}
+#num8{
+    grid-area: Num8;
+}
+#num9{
+    grid-area: Num9;
+}
+
+/* History */
+
+#history_btn_container{
+    grid-area: Buttons;
+    display: grid;
+    gap: 10px;
+    grid-template-areas: "Calculator ClearHistory";
+}
+#all_history{
+    grid-area: AllHistory;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    scrollbar-width: none;
+}
+#all_history > span{
+    color: var(--color-history-font);
+    width: 100%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+#all_history > p{
+    color: var(--color-history-font);
+    font-weight: 500;
+    text-align: center;
+    margin: auto;
+}
+#empty_space{
+    grid-area: Emptyspace;
+}
+
+@media (min-width: 425px) {
+    #card_flipper{
+        max-width: 325px;
+    }
+    .all_buttons{
+        font-size: var(--size-base);
+    }
+    #all_history > span, #all_history > p{
+        font-size: var(--size-sm);
+    }
+    #calculator_input{
+        font-size: var(--size-4xl);
+    }
+    #calculator_output{
+        font-size: var(--size-lg);
+    }
+    #theme_icon{
+        width: 3.25rem;
+        height: 3.25rem;
+        padding: 0.5rem;
+    }
+}
+@media only screen and (min-width: 640px){
+    
+}
+@media only screen and (min-width: 768px){
+    .all_buttons{
+        font-size: var(--size-lg);
+    }
+    #all_history > span, #all_history > p{
+        font-size: var(--size-base);
+    }
+    #calculator_input{
+        font-size: var(--size-4xl);
+    }
+    #calculator_output{
+        font-size: var(--size-xl);
+    }
+    #theme_icon{
+        top: 0.75rem;
+        right: 0.75rem;
+    }
+}
+@media only screen and (min-width: 1024px){
+    #card_flipper{
+        max-width: 350px;
+    }
+    .all_buttons{
+        border-radius: 20px;
+        font-size: var(--size-xl);
+    }
+    #all_history > span, #all_history > p{
+        font-size: var(--size-lg);
+    }
+    #calculator_card, #history_card, #history_btn_container{
+        gap: 15px;
+    }
+    #theme_icon{
+        width: 4rem;
+        height: 4rem;
+        padding: 0.5rem;
+        top: 1.25rem;
+        right: 1.25rem;
+    }
+}
+@media only screen and (min-width: 1200px){
+    #card_flipper{
+        max-width: 380px;
+    }
+    .all_buttons{
+        border-radius: 18px;
+        font-size: var(--size-xxl);
+    }
+    #all_history > span, #all_history > p{
+        font-size: var(--size-xl);
+    }
+    #calculator_card, #history_card, #history_btn_container{
+        gap: 15px;
+    }
+    #theme_icon{
+        width: 4.25rem;
+        height: 4.25rem;
+        padding: 0.75rem;
+        top: 1.25rem;
+        right: 1.25rem;
+    }
+}
+@media only screen and (min-width: 1440px){
+    #card_flipper{
+        max-width: 430px;
+    }
+    #theme_icon{
+        width: 4.5rem;
+        height: 4.5rem;
+        top: 1.5rem;
+        right: 1.5rem;
+    }
+}
+@media only screen and (min-width: 1536px) {
+    #card_flipper{
+        max-width: 900px;
+    }
+    #calculator_card, #history_card{
+        border-radius: 50px;
+    }
+    .all_buttons{
+        border-radius: 30px;
+        font-size: var(--size-4xl);
+    }
+    #all_history > span, #all_history > p{
+        font-size: var(--size-4xl);
+    }
+    #calculator_input{
+        font-size: var(--size-5xl);
+    }
+    #calculator_output{
+        font-size: var(--size-xxl);
+    }
+    #calculator_card, #history_card, #history_btn_container{
+        gap: 35px;
+    }
+    #theme_icon{
+        width: 6rem;
+        height: 6rem;
+        padding: 1rem;
+        top: 2rem;
+        right: 2rem;
+    }
+} 
+
