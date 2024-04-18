@@ -8,7 +8,17 @@
     <title>Simple Calculator</title>
 </head>
 <body id="root">
-    <span id="theme_icon"><button id="theme_switch" onclick="toggleMode()"></button></span>
+    <span id="pc_theme_icon">
+        <button class="theme_switch_btn" onclick="toggleMode()"></button>
+    </span>
+    <span id="mobile_theme_icon_container" onclick="toggleThemeButton()">
+        <span id="mobile_theme_icon">
+            <button class="theme_switch_btn" onclick="toggleMode()"></button>
+        </span>
+        <span id="mobile_theme_icon_toggler">
+            <button id="mobile_theme_icon_toggle"><img id="mobile_toggler_arrow" src="./Images/theme-icon-toggler.png" alt=""></button>
+        </span>
+    </span>
     <div id="card_flipper">
         <div id="calculator_card" >
             <button class="all_buttons operation_btns" id="history" onclick="historySwitch()"><img src="./Images/history.png" alt="History" class="btn_icons"></button>

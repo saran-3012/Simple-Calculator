@@ -1,6 +1,19 @@
 let rootElement = document.querySelector(':root');
 let backgroundElement = document.getElementById('root');
 let themeSwitch = document.getElementById('theme_switch');
+let mobileThemeButtonToggle = document.getElementById('mobile_theme_icon_container');
+let togglerButton = document.getElementById('mobile_toggler_arrow');
+
+function toggleThemeButton(){
+    if(mobileThemeButtonToggle.style.transform === 'translateX(0%)'){
+        mobileThemeButtonToggle.style.transform = 'translateX(calc(-100% + 1.2rem))';
+        togglerButton.style.transform = 'rotateY(0deg)';
+    }
+    else{
+        mobileThemeButtonToggle.style.transform = 'translateX(0%)';
+        togglerButton.style.transform = 'rotateY(180deg)';
+    }
+}
 function applyTheme(theme){
     if(theme === 'light'){
         backgroundElement.style.backgroundImage = "url('./Components/background-light.svg')";
@@ -17,15 +30,14 @@ function applyTheme(theme){
     else{
         backgroundElement.style.backgroundImage = "url('./Components/background-dark.svg')";
         themeSwitch.style.backgroundImage = "url('./Images/light-theme-icon.png')";
-        rootElement.style.setProperty('--color-theme-font', 'rgb(51, 170, 255)');
         rootElement.style.setProperty('--color-font', 'white');
         rootElement.style.setProperty('--color-button', 'rgba(20, 20, 20, 0.50)');
         rootElement.style.setProperty('--color-background-calculator', 'rgba(30, 30, 30, 0.25)');
         rootElement.style.setProperty('--color-background-history', 'rgba(30, 30, 30, 0.075)');
         rootElement.style.setProperty('--color-card-boxshadow-1', 'rgb(0, 6, 10)');
-        rootElement.style.setProperty('--color-card-boxshadow-2', 'rgb(0, 24, 42)');
+        rootElement.style.setProperty('--color-card-boxshadow-2', 'rgb(51, 170, 255, 0.4)');
         rootElement.style.setProperty('--color-button-boxshadow-1', 'rgb(0, 6, 10)');
-        rootElement.style.setProperty('--color-button-boxshadow-2', 'rgb(51, 170, 255, 0.4');
+        rootElement.style.setProperty('--color-button-boxshadow-2', 'rgb(51, 170, 255, 0.4)');
     }
 }
 
@@ -67,7 +79,7 @@ function operation(b,a,op){
         case '^':
             return a**b;
         default:
-            return "ERROR";
+            return "Error!";
     }
 }
   
@@ -111,7 +123,7 @@ function evaluate(e){
         return (valStk[0]==+valStk[0])?valStk[0]:false;
     }   
     catch (err) {
-        return "ERROR";
+        return "Error!";
     }   
 }
 
@@ -177,7 +189,7 @@ function clearAllInput(){
 }
 
 function computeResult(){
-    let expressionResult = evaluate(inputField.value) || "INVAILD INPUT";
+    let expressionResult = evaluate(inputField.value) || "Invalid input!";
     sessionStorage.setItem(inputField.value, expressionResult);
     inputField.value = expressionResult;
     outputField.innerHTML = ''; 
