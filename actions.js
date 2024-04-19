@@ -183,12 +183,16 @@ function addInput(val){
 
 function clearInput(){
     inputField.value = inputField.value.slice(0,-1);
+    if(inputField.value===''){
+        outputField.innerHTML = '';
+    }
     inputField.focus();
     inputField.dispatchEvent(triggerInput);
 }
 
 function clearAllInput(){
     inputField.value = '';
+    outputField.innerHTML = '';
     inputField.focus();
 }
 

@@ -240,7 +240,7 @@
 .operation_btns{
     color: var(--color-theme-font);
 }
-.all_buttons:hover, .all_buttons:active{
+.all_buttons:hover{
     opacity: 0.7;
 }
 #calculator_output{
