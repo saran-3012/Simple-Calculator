@@ -363,7 +363,7 @@
     grid-area: Emptyspace;
 }
 
-@media (min-width: 425px) {
+@media only screen and (min-width: 425px) {
     #mobile_theme_icon_container{
         display: none;
     }
