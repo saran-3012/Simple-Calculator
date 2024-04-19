@@ -1,9 +1,9 @@
-let rootElement = document.querySelector(':root');
-let backgroundElement = document.getElementById('root');
-let themeSwitch = document.getElementsByClassName('theme_switch_btn');
-let mobileThemeButtonToggle = document.getElementById('mobile_theme_icon_container');
-let togglerButton = document.getElementById('mobile_toggler_arrow');
-
+const rootElement = document.querySelector(':root');
+const backgroundElement = document.getElementById('root');
+const themeSwitch = document.getElementsByClassName('theme_switch_btn');
+const mobileThemeButtonToggle = document.getElementById('mobile_theme_icon_container');
+const togglerButton = document.getElementById('mobile_toggler_arrow');
+const togglerButtonContainer = document.getElementById('mobile_theme_icon_toggle'); 
 function toggleThemeButton(){
     if(mobileThemeButtonToggle.style.transform === 'translateX(0%)'){
         mobileThemeButtonToggle.style.transform = 'translateX(calc(-100% + 1.2rem))';
@@ -27,6 +27,7 @@ function applyTheme(theme){
         rootElement.style.setProperty('--color-card-boxshadow-2', 'rgba(255, 255, 255, 0.2)');
         rootElement.style.setProperty('--color-button-boxshadow-1', 'rgba(0, 0, 0, 0.1)');
         rootElement.style.setProperty('--color-button-boxshadow-2', 'rgba(255, 255, 255, 0.4)');
+        togglerButtonContainer.style.backgroundColor = 'rgba(255, 255, 255, 0.5)';
     }
     else{
         backgroundElement.style.backgroundImage = "url('./Components/background-dark.svg')";
@@ -40,6 +41,7 @@ function applyTheme(theme){
         rootElement.style.setProperty('--color-card-boxshadow-2', 'rgb(51, 170, 255, 0.4)');
         rootElement.style.setProperty('--color-button-boxshadow-1', 'rgb(0, 6, 10)');
         rootElement.style.setProperty('--color-button-boxshadow-2', 'rgb(51, 170, 255, 0.4)');
+        togglerButtonContainer.style.backgroundColor = 'rgba(255, 255, 255, 0.1)';
     }
 }
 
