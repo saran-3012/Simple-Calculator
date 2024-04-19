@@ -1,6 +1,6 @@
 let rootElement = document.querySelector(':root');
 let backgroundElement = document.getElementById('root');
-let themeSwitch = document.getElementById('theme_switch');
+let themeSwitch = document.getElementsByClassName('theme_switch_btn');
 let mobileThemeButtonToggle = document.getElementById('mobile_theme_icon_container');
 let togglerButton = document.getElementById('mobile_toggler_arrow');
 
@@ -17,7 +17,8 @@ function toggleThemeButton(){
 function applyTheme(theme){
     if(theme === 'light'){
         backgroundElement.style.backgroundImage = "url('./Components/background-light.svg')";
-        themeSwitch.style.backgroundImage = "url('./Images/dark-theme-icon.png')";
+        themeSwitch[0].style.backgroundImage = "url('./Images/dark-theme-icon.png')";
+        themeSwitch[1].style.backgroundImage = "url('./Images/dark-theme-icon.png')";
         rootElement.style.setProperty('--color-font', 'black');
         rootElement.style.setProperty('--color-button', 'rgba(255, 255, 255, 0.50)');
         rootElement.style.setProperty('--color-background-calculator', 'rgba(255, 255, 255, 0.25)');
@@ -29,7 +30,8 @@ function applyTheme(theme){
     }
     else{
         backgroundElement.style.backgroundImage = "url('./Components/background-dark.svg')";
-        themeSwitch.style.backgroundImage = "url('./Images/light-theme-icon.png')";
+        themeSwitch[0].style.backgroundImage = "url('./Images/light-theme-icon.png')";
+        themeSwitch[1].style.backgroundImage = "url('./Images/light-theme-icon.png')";
         rootElement.style.setProperty('--color-font', 'white');
         rootElement.style.setProperty('--color-button', 'rgba(20, 20, 20, 0.50)');
         rootElement.style.setProperty('--color-background-calculator', 'rgba(30, 30, 30, 0.25)');
